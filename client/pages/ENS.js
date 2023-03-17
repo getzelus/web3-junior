@@ -3,7 +3,7 @@ import styles from "../styles/ENS.module.css";
 import Web3Modal from "web3modal";
 import { ethers, providers } from "ethers";
 import { useEffect, useRef, useState } from "react";
-import { network} from '../utils/network';
+import { goerli} from '../utils/networks';
 
 export default function ENS() {
   // walletConnected keep track of whether the user's wallet is connected or not
@@ -45,9 +45,9 @@ export default function ENS() {
 
     // If user is not connected to the Goerli network, let them know and throw an error
     const { chainId } = await web3Provider.getNetwork();
-    if (chainId != network.chainId) {
-      window.alert(`Change the network to ${network.name}`);
-      throw new Error(`Change the network to ${network.name}`);
+    if (chainId != goerli.chainId) {
+      window.alert(`Change the network to ${goerli.name}`);
+      throw new Error(`Change the network to ${goerli.name}`);
     }
     const signer = web3Provider.getSigner();
     // Get the address associated to the signer which is connected to  MetaMask
@@ -95,7 +95,7 @@ export default function ENS() {
       // Assign the Web3Modal class to the reference object by setting it's `current` value
       // The `current` value is persisted throughout as long as this page is open
       web3ModalRef.current = new Web3Modal({
-        network: network.name,
+        network: goerli.name,
         providerOptions: {},
         disableInjectedProvider: false,
       });

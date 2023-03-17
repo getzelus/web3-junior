@@ -5,6 +5,7 @@ export default function Menu() {
   return (<div className={styles.menu}>
 
     <Link href='ENS'>ENS</Link>
+    <Link href='Punk'>Punk</Link>
       <Link href='About'>About</Link>
 
   </div>);
